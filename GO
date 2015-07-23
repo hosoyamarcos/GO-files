@@ -1,0 +1,128 @@
+#!/bin/sh
+
+# para nao ocorrer problema na abertura do chrome
+# é deletado as sessions criadas, com excecao do Default
+# para nao perguntar sobre o navegador Default
+cd $HOME/.config/chrome
+
+cd session0
+rm -rf Default
+cd ..
+
+cd session1
+rm -rf Default
+cd ..
+
+cd session2
+rm -rf Default
+cd ..
+
+cd session3
+rm -rf Default
+cd ..
+
+sleep 2
+# acessa o diretorio do ./GO-server
+cd /home/lassu/Desktop/SAGE2
+
+./GO-server
+
+sleep 1
+
+#---------------------------------------------------------------------------
+# create folder to store chrome session
+
+mkdir -p $HOME/.config/chrome/session0
+# parametros para o chrome
+global_param="--args --new-window --disable-popup-blocking --no-first-run --use-gl --enable-accelerated-compositing --allow-file-access-from-files --disable-session-crashed-bubble --allow-running-insecure-content"
+
+param="$global_param --user-data-dir=$HOME/.config/chrome/session0"
+# mudar display
+export DISPLAY=:0.0
+env DISPLAY=:0.0
+sleep 1
+# abre window do audio manager
+google-chrome $param --window-size=1920,1080 --window-position=0,0 --app=https://lassu:443/audioManager.html &
+
+sleep 1
+# abre window do display user
+#google-chrome $global_param --window-size=1280,720 --window-position=0,0 https://lassu:443 &
+
+sleep 2
+# abre window do display server(copiar e mudar IDs)
+# ID=0
+google-chrome --window-size=1920,1080 $param --window-position=0,0 --app=https://lassu:443/display.html\?clientID=0 &
+sleep 1
+#------------------------------------------------------------------------
+mkdir -p $HOME/.config/chrome/session1
+
+global_param="--args --new-window --disable-popup-blocking --no-first-run --use-gl --enable-accelerated-compositing --allow-file-access-from-files --disable-session-crashed-bubble --allow-running-insecure-content"
+
+param="$global_param --user-data-dir=$HOME/.config/chrome/session1"
+
+sleep 1
+# mudar display
+export DISPLAY=:0.1
+env DISPLAY=:0.1
+sleep 1
+
+# abre window do display server(copiar e mudar IDs)
+# ID=1
+google-chrome --window-size=1920,1080 $param --window-position=0,0 --app=https://lassu:443/display.html\?clientID=1 &
+sleep 1
+#------------------------------------------------------------------------
+mkdir -p $HOME/.config/chrome/session2
+
+global_param="--args --new-window --disable-popup-blocking --no-first-run --use-gl --enable-accelerated-compositing --allow-file-access-from-files --disable-session-crashed-bubble --allow-running-insecure-content"
+
+param="$global_param --user-data-dir=$HOME/.config/chrome/session2"
+
+sleep 1
+# mudar display
+export DISPLAY=:0.2
+env DISPLAY=:0.2
+sleep 1
+# abre window do display server(copiar e mudar IDs)
+# ID=2
+google-chrome --window-size=1920,1080 $param --window-position=0,0 --app=https://lassu:443/display.html\?clientID=2 &
+sleep 1
+#------------------------------------------------------------------------
+mkdir -p $HOME/.config/chrome/session3
+
+global_param="--args --new-window --disable-popup-blocking --no-first-run --use-gl --enable-accelerated-compositing --allow-file-access-from-files --disable-session-crashed-bubble --allow-running-insecure-content"
+
+param="$global_param --user-data-dir=$HOME/.config/chrome/session3"
+
+sleep 1
+# mudar display
+export DISPLAY=:0.3
+env DISPLAY=:0.3
+sleep 1
+
+# abre window do display server(copiar e mudar IDs)
+# ID=3
+google-chrome --window-size=1920,1080 $param --window-position=0,0 --app=https://lassu:443/display.html\?clientID=3 &
+sleep 5
+
+#--------------------------------------------------------------------
+# comandos com xdotool para fullscreen
+
+# screen 0
+xdotool mousemove --screen 0 50 50
+xdotool click 1
+xdotool key F11
+# screen 1
+xdotool mousemove --screen 1 50 50
+xdotool click 1
+xdotool key F11
+# screen 2
+xdotool mousemove --screen 2 50 50
+xdotool click 1
+xdotool key F11
+# screen 3
+xdotool mousemove --screen 3 50 50
+xdotool click 1
+xdotool key F11
+# volta para screen 0
+xdotool mousemove --screen 0 50 50
+xdotool click 1
