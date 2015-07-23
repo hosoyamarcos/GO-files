@@ -81,14 +81,14 @@ for ID in `seq 0 $LAST_MONITOR`; do
 
   if [ $ID -eq 0 ]; then
 
-  #-------------------------------------------------
-  # Audio Manager
-  # abre pagina do audio manager (videos so funcionam com audio manager ativado)
-  # 
-  $CHROME_CMD --user-data-dir=${CHROME_SESSIONDIR}$ID --app=$BASE_URL/audioManager.html &
-  sleep 7
+    #-------------------------------------------------
+    # Audio Manager
+    # abre pagina do audio manager (videos so funcionam com audio manager ativado)
+    # 
+    $CHROME_CMD --user-data-dir=${CHROME_SESSIONDIR}$ID --app=$BASE_URL/audioManager.html &
+    sleep 7
   
-  xdotoolUnlock $ID
+    xdotoolUnlock $ID
   
   fi
 
@@ -96,14 +96,14 @@ for ID in `seq 0 $LAST_MONITOR`; do
   # Display Screen
   #
   $CHROME_CMD --user-data-dir=${CHROME_SESSIONDIR}$ID --app=$BASE_URL/display.html\?clientID=$ID &
-  sleep 1
+  sleep 2
 
   #-------------------------------------------------
   # comandos com xdotool para fullscreen
   #
- # xdotoolUnlock $ID
+  # xdotoolUnlock $ID
   # xdotool key F11
- # xdotoolFullscreen 
+  # xdotoolFullscreen 
   
 done
 
